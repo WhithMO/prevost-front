@@ -1,0 +1,76 @@
+.card-header {
+  background-color: #f1f8fe;
+  border-bottom: 1px solid #e1ecf8;
+  padding: 15px 20px;
+  border-radius: 12px 12px 0 0;
+}  .btn-primary {
+    background-color: #3498db;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  }
+  .btn-primary:disabled {
+    background-color: #a9cce3;
+  }
+  .divider {
+    border-top: 1px solid #eaeaea;
+    margin: 20px 0;
+  }
+  .input-icon {
+    position: relative;
+  }
+  .input-icon i {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #95a5a6;
+  }
+  .input-icon input {
+    padding-right: 40px;
+  }
+  .form-label {
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 8px;
+  }
+  .form-control, .form-select {
+    border-radius: 8px;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s;
+  }
+  .form-control:focus, .form-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  }
+  .form-control::placeholder {
+    color: #bdc3c7;
+  }
+  .text-danger {
+    font-size: 0.85rem;
+    margin-top: 5px;
+  }
+  .subtitle {
+    color: #7f8c8d;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+  }
+  .page-title {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }.form-container {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 17px;
+   
+    }
+  

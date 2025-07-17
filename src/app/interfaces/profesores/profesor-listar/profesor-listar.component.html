@@ -1,0 +1,58 @@
+<div class="container ">
+    <div class="main-container">
+        <div class="content-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="page-title"><i class="fas fa-users me-2"></i>Mantenimiento de Profesores</h2>
+                <button routerLink="/profesores/form" class="btn custom-btn">
+                    <i class="fas fa-user-plus me-2"></i> Registrar
+                </button>
+            </div>
+        </div>
+
+        <div class="p-4">
+            <div class="mb-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar por nombre de usuario o profesor"
+                        [(ngModel)]="filtro" (input)="filtrarProfesores()">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="table-responsive rounded shadow-sm custom-table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Celular</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let profesor of profesoresFiltrados | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+                            <ng-container *ngIf="profesor.dni !== '99999999'">
+                                <td class="fw-bold">{{ profesor.dni }}</td>
+                                <td>{{ profesor.nombre }}</td>
+                                <td>{{ profesor.apellido }}</td>
+                                <td>{{ profesor.especialidad }}</td>
+                                <td>{{ profesor.telefono }}</td>
+                                <td>
+                                    <button class="btn btn-warning" routerLink="editarProfesor/{{profesor.idprofesor}}">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Controles de paginación -->
+        <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior" nextLabel="Siguiente">
+        </pagination-controls>
+    </div>
+</div>

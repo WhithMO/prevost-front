@@ -1,0 +1,48 @@
+<div class="content flex-grow-1 p-4">
+    <div class="row">
+      <div class="col-md-10">
+        <h2 class="fw-bold mb-4" style="color: #000000;">Listado de Alumnos en Cursos</h2>
+      </div>
+      <div class="col-md-2">
+        <div class="d-flex justify-content-end mb-3">
+          <button routerLink="/aulacurso/form" class="btn btn-success">
+            <i class="fas fa-plus"></i> Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mensaje de error -->
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+  
+    <!-- Tabla de alumnos en cursos -->
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered text-center w-100">
+        <thead class="table-dark text-white">
+          <tr>
+            <th scope="col">Nº</th>
+            <th scope="col">Alumno</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Fecha Registro</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let aulacurso of aulacursos; let i = index">
+            <td class="fw-bold">{{ i + 1 }}</td>
+            <td>{{ aulacurso.alumno.nombrealumno }} {{ aulacurso.alumno.apellidoalumno }}</td>
+            <td>{{ aulacurso.curso.nombrecurso }}</td>
+            <td>{{ aulacurso.fechaRegistro }}</td>
+            <td>
+              <button class="btn btn-warning" [routerLink]="['/aulacurso/editar', aulacurso.idaulacurso]">
+                <i class="fas fa-edit"></i> Editar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

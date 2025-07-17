@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="form-container">
+    <div class="card-header">
+      <h2 class="page-title"><i class="fas fa-user-edit me-2"></i>Actualizar Curso</h2>
+      <p class="subtitle mb-0">Modificar de una  curso en el sistema</p>
+    </div>
+    <form  (ngSubmit)="editarCurso()" class="mt-4">
+      <div class="row">
+      
+        <!-- Nombre del Curso -->
+        <div class="col-md-6 mb-3">
+          <label for="nombre" class="form-label">Nombre del Curso</label>
+          <input 
+            id="nombre" 
+            type="text" 
+            class="form-control" 
+            [(ngModel)]="curso.nombre"
+            name="nombre"
+            required
+          />
+          <div *ngIf="!curso.nombre" class="text-danger">
+            El nombre del curso es obligatorio.
+          </div>
+        </div>
+    
+        <!-- Descripción del Curso -->
+        <div class="col-md-12 mb-3">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <textarea 
+            id="descripcion" 
+            class="form-control" 
+            [(ngModel)]="curso.descripcion"
+            name="descripcion"
+            placeholder="Ingrese una descripción del curso"
+            rows="3"
+            required
+          ></textarea>
+          <div *ngIf="!curso.descripcion" class="text-danger">
+            La descripción es obligatoria.
+          </div>
+        </div>
+    
+      </div>
+      <div class="divider"></div>
+      <div class="d-flex justify-content-between align-items-center mt-4" >
+        <button type="button" class="btn btn-outline-secondary px-4"(click)="irACursos()">
+          <i class="fas fa-arrow-left me-2"></i>Cancelar
+        </button>
+        <button type="submit" class="btn btn-success px-4 py-2 fw-bold shadow-sm" >
+          <i class="fas fa-user-plus"></i> Actualizar  Cursos
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

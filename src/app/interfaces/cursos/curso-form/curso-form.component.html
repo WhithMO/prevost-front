@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="form-container">
+    <div class="card-header">
+      <h2 class="page-title"><i class="fas fa-user-plus me-2"></i>Agregar Curso</h2>
+      <p class="subtitle mb-0">Creación de una nueva curso en el sistema</p>
+    </div>
+    <form [formGroup]="cursoForm" (ngSubmit)="agregarCurso()" class="mt-4">
+      <div class="row">
+        <!-- Nombre del Curso -->
+        <div class="col-md-6 mb-3">
+          <label for="nombre" class="form-label">Nombre del Curso</label>
+          <input id="nombre" type="text" class="form-control" formControlName="nombre"
+            placeholder="Ingrese el nombre del curso" required />
+          <div *ngIf="cursoForm.get('nombre')?.invalid && cursoForm.get('nombre')?.touched" class="text-danger">
+            El nombre del curso debe tener al menos 3 caracteres.
+          </div>
+        </div>
+
+        <!-- Descripción del Curso -->
+        <div class="col-md-12 mb-3">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <textarea id="descripcion" class="form-control" formControlName="descripcion"
+            placeholder="Ingrese una descripción del curso" rows="3" required></textarea>
+          <div *ngIf="cursoForm.get('descripcion')?.invalid && cursoForm.get('descripcion')?.touched"
+            class="text-danger">
+            La descripción debe tener al menos 3 caracteres.
+          </div>
+        </div>
+
+      </div>
+      <div class="divider"></div>
+      <div class="d-flex justify-content-between align-items-center mt-4">
+        <button type="button" class="btn btn-outline-secondary px-4" (click)="irACursos()">
+          <i class="fas fa-arrow-left me-2"></i>Cancelar
+        </button>
+        <button type="submit" class="btn btn-success px-4 py-2 fw-bold shadow-sm" [disabled]="cursoForm.invalid">
+          <i class="fas fa-user-plus"></i> Agregar  Cursos
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

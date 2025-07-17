@@ -1,0 +1,17 @@
+<div class="layout d-flex">
+  <app-sidebar (sidebarToggled)="toggleSidebar($event)"></app-sidebar>
+
+  <div [ngClass]="{ 'main-content': true, 'collapsed-content': isSidebarToggled }" class="flex-grow-1 d-flex flex-column">
+    <app-navbar class="sticky-top bg-dark z-1030"></app-navbar>
+
+    <!-- Contenido dinámico centrado -->
+    <div class="content flex-grow-1 d-flex justify-content-center align-items-start p-4">
+      <div class="w-100" style="max-width: 1200px;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <!-- Footer al final -->
+    <app-footer></app-footer>
+  </div>
+</div>

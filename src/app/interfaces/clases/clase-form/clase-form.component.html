@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="form-container p-4 shadow-lg rounded bg-white">
+    <div class="card-header text-center">
+      <h2 class="page-title"><i class="fas fa-calendar-plus me-2"></i> Programar Nueva Clase</h2>
+      <p class="subtitle mb-3 text-muted">Registra una nueva programación de clase en el sistema</p>
+    </div>
+
+    <form [formGroup]="claseForm" (ngSubmit)="agregarClase()" class="mt-3">
+      <!-- 🔹 Fila para Aula y Curso -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="aula" class="form-label fw-bold">Aula</label>
+          <select id="aula" class="form-select shadow-sm" formControlName="idaula">
+            <option value="" selected disabled>Seleccione un aula</option>
+            <option *ngFor="let aula of listaaula" [value]="aula.idaula">{{ aula.nombre }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label for="curso" class="form-label fw-bold">Curso</label>
+          <select id="curso" class="form-select shadow-sm" formControlName="idcurso">
+            <option value="" selected disabled>Seleccione un curso</option>
+            <option *ngFor="let curso of listacurso" [value]="curso.idcurso">{{ curso.nombre }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 🔹 Fila para Profesor -->
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <label for="profesor" class="form-label fw-bold">Profesor</label>
+          <select id="profesor" class="form-select shadow-sm" formControlName="idprofesor">
+            <option value="" selected disabled>Seleccione un profesor</option>
+            <option *ngFor="let profesor of listaprofesor" [value]="profesor.idprofesor">
+              {{ profesor.nombre }} {{ profesor.apellido }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 🔹 Fila para Fecha y Horarios -->
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label for="fechadeclase" class="form-label fw-bold">Fecha de la Clase</label>
+          <input type="date" id="fechadeclase" class="form-control shadow-sm" formControlName="fechadeclase" (change)="actualizarDiaSemana()">
+        </div>
+
+        <div class="col-md-4">
+          <label for="diaSemana" class="form-label fw-bold">Día de la Semana</label>
+          <input type="text" id="diaSemana" class="form-control shadow-sm" formControlName="diaSemana" readonly>
+        </div>
+
+        <div class="col-md-4">
+          <label for="horaInicio" class="form-label fw-bold">Hora de Inicio</label>
+          <input type="time" id="horaInicio" class="form-control shadow-sm" formControlName="horaInicio">
+        </div>
+
+        <div class="col-md-4">
+          <label for="horaFin" class="form-label fw-bold">Hora de Fin</label>
+          <input type="time" id="horaFin" class="form-control shadow-sm" formControlName="horaFin">
+        </div>
+      </div>
+
+      <div class="divider my-4"></div>
+
+      <!-- 🔹 Botones de Acción -->
+      <div class="d-flex justify-content-between align-items-center">
+        <button type="button" class="btn btn-outline-secondary px-4 shadow-sm" (click)="cancelar()">
+          <i class="fas fa-arrow-left me-2"></i>Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary px-4 shadow-sm">
+          <i class="fas fa-save me-2"></i>Guardar Clase
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

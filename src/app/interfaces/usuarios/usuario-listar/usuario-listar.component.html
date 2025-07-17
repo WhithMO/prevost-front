@@ -1,0 +1,68 @@
+<div class="container ">
+    <div class="main-container">
+        <div class="content-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="page-title"><i class="fas fa-users me-2"></i>Mantenimiento de Usuarios</h2>
+                <button routerLink="/usuarios/form" class="btn custom-btn">
+                    <i class="fas fa-user-plus me-2"></i> Registrar
+                </button>
+            </div>
+        </div>
+
+        <div class="p-4">
+            <!-- Mensaje de error -->
+            <div *ngIf="error" class="alert alert-danger alert-dismissible fade show">
+                <i class="fas fa-exclamation-circle me-2"></i> {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <!-- Tabla de usuarios -->
+            <div class="table-responsive rounded shadow-sm custom-table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 5%">#</th>
+                            <th scope="col" style="width: 20%">Usuario</th>
+                            <th scope="col" style="width: 25%">Profesor</th>
+                            <th scope="col" style="width: 20%">Rol</th>
+                            <th scope="col" style="width: 30%">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index">
+                            <td class="fw-bold">{{ i + 1 }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    {{ usuario.username }}
+                                </div>
+                            </td>
+                            <td>{{ usuario.profesor?.nombre || 'Sin profesor' }}</td>
+                            <td>
+                                <span class="badge" [ngClass]="{
+                    'bg-primary': usuario.rol?.nombre === 'ADMINISTRADOR',
+                    'bg-success': usuario.rol?.nombre === 'PROFESOR',
+                    'bg-secondary': !usuario.rol?.nombre
+                  }">
+                                    {{ usuario.rol?.nombre || 'Sin rol' }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="action-buttons-container">
+                                    <button
+                                    *ngIf="usuario.idusuario !== 1"
+                                    class="btn custom-btn-warning me-2 action-button"
+                                    [routerLink]="['/usuarios/editar', usuario.idusuario]"
+                                  >
+                                    <i class="fas fa-edit"></i> Editar
+                                  </button>
+                                  
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior" nextLabel="Siguiente">
+        </pagination-controls>
+    </div>
+</div>

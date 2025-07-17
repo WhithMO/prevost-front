@@ -1,0 +1,98 @@
+<section class="vh-100" style="background-color: #9A616D;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <form (ngSubmit)="login()">
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-school fa-2x me-3" style="color: #db5682;"></i>
+                    <span class="h1 fw-bold mb-0">Login</span>
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Inicia sesión en tu cuenta</h5>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    
+                    <input type="text" id="usuario" class="form-control form-control-lg" [(ngModel)]="usuario" name="usuario" placeholder="Usuario" required/>
+                  </div>
+
+                  <div class="form-outline mb-4 position-relative">
+                    <input [type]="verPassword ? 'text' : 'password'"
+                           id="password"
+                           class="form-control form-control-lg pe-5"
+                           [(ngModel)]="contrasena"
+                           name="contraseña"
+                           placeholder="Contraseña"
+                           required />
+                  
+                    <!-- Ojito -->
+                    <button type="button"
+                            (click)="verPassword = !verPassword"
+                            class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2"
+                            tabindex="-1">
+                      <i class="fas" [ngClass]="verPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                    </button>
+                  </div>
+                  
+
+                  <div class="pt-1 mb-4">
+                    <div class="pt-1 mb-4">
+                      <button type="submit" class="btn btn-dark btn-lg btn-block">Iniciar sesión</button>
+                    </div>
+
+                  </div>
+                  <div class="pt-1 mb-4">
+                    <p class="text-muted text-center mt-4 fst-italic fs-5">I.E. Robert Francis Prevost</p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Este botón se ejecuta automáticamente desde el componente -->
+<button type="button" class="d-none" id="btnAbrirModalClave" data-bs-toggle="modal" data-bs-target="#modalCambioClave"></button>
+
+<div class="modal fade" id="modalCambioClave" tabindex="-1" aria-labelledby="modalCambioClaveLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title fw-bold" id="modalCambioClaveLabel">Cambiar contraseña</h5>
+      </div>
+      <div class="modal-body p-4">
+        <form (ngSubmit)="cambiarClave()" #formClave="ngForm">
+          <div class="mb-3">
+            <label for="claveActual" class="form-label">Clave actual</label>
+            <input type="password" id="claveActual" [(ngModel)]="claveActual" name="claveActual"
+              class="form-control rounded-3 shadow-sm" required />
+          </div>
+          <div class="mb-3">
+            <label for="nuevaClave" class="form-label">Nueva clave</label>
+            <input type="password" id="nuevaClave" [(ngModel)]="nuevaClave" name="nuevaClave"
+              class="form-control rounded-3 shadow-sm" required />
+          </div>
+          <div class="mb-3">
+            <label for="confirmarClave" class="form-label">Confirmar nueva clave</label>
+            <input type="password" id="confirmarClave" [(ngModel)]="confirmarClave" name="confirmarClave"
+              class="form-control rounded-3 shadow-sm" required />
+          </div>
+          <div class="modal-footer border-0 pt-0">
+            <button type="submit" class="btn btn-success px-4">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

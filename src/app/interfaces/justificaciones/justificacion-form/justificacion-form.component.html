@@ -1,0 +1,88 @@
+<!-- Registrar Justificación (profesor) -->
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card shadow-lg">
+                <div class="card-header bg-light text-dark">
+                    <h4 class="mb-0 d-flex align-items-center">
+                        <i class="fas fa-edit me-2"></i> Registrar Justificación
+                    </h4>
+                    <small class="text-muted">Complete la información para registrar una justificación</small>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="justificacionForm" (ngSubmit)="registrarJustificacion()">
+                        
+                        <!-- Seleccionar Justificación Pendiente -->
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label class="form-label fw-bold">Justificaciones Pendientes</label>
+                                <select id="justificacionesPendientes" class="form-select shadow-sm" 
+                                        formControlName="justificacionSeleccionada" (change)="cargarDatosJustificacion()">
+                                    <option value="" selected disabled>Seleccione una justificación</option>
+                                    <option *ngFor="let justificacion of listapendientes" [value]="justificacion.idasistencia">
+                                        {{ justificacion.nombre }} {{ justificacion.apellido }} - {{ convertirFecha(justificacion.fecha) }} - {{justificacion.nombrecurso}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Fila: Nombre y Fecha de Justificación -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Nombre y Apellido</label>
+                                <input type="text" class="form-control shadow-sm" formControlName="nombreApellido" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Fecha de Justificación</label>
+                                <input type="date" class="form-control shadow-sm" formControlName="fechaJustificacion" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Fila: Estado y Fecha a Justificar -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Estado</label>
+                                <input type="text" class="form-control shadow-sm" formControlName="estado" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Curso</label>
+                                <input type="text" class="form-control shadow-sm" formControlName="nombrecurso" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Fila: Motivo -->
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-bold">Motivo de Justificación</label>
+                                <textarea class="form-control shadow-sm" placeholder="Ingrese el motivo" formControlName="motivo" required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Fila: Adjuntar Evidencia -->
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-bold">Adjuntar Evidencia</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control shadow-sm" (change)="onArchivoSeleccionado($event)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fila: Botones -->
+                        <div class="row">
+                            <div class="col-md-12 text-end">
+                                <button type="button" class="btn btn-light me-2" (click)="cancelar()">
+                                    <i class="bi bi-arrow-left"></i> Cancelar
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="bi bi-check-circle"></i> Guardar Justificación
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

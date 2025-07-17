@@ -1,0 +1,75 @@
+
+
+<div class="container">
+  <div class="form-container">
+    <div class="card-header">
+      <h2 class="page-title"><i class="fas fa-user-edit me-2"></i>Actualización de Usuario</h2>
+      <p class="subtitle mb-0">Modifica la información del usuario en el sistema</p>
+    </div>
+
+    <form [formGroup]="usuarioForm" (ngSubmit)="actualizarUsuario()" class="mt-4">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <label for="username" class="form-label">Nombre Usuario</label>
+          <div class="input-icon">
+            <input id="username" type="text" class="form-control" formControlName="username"
+              placeholder="Nombre de usuario" required />
+            <i class="fas fa-user"></i>
+          </div>
+          <small class="text-muted">Identificador único del usuario en el sistema</small>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <label for="password" class="form-label">Nueva Clave</label>
+          <div class="input-icon">
+            <input id="password" type="password" class="form-control" formControlName="password"
+            placeholder="Dejar en blanco para mantener clave actual" autocomplete="new-password" />          
+            <i class="fas fa-lock"></i>
+          </div>
+          <small class="text-muted">Opcional: complete solo si desea cambiar la contraseña</small>
+        </div>
+        <div class="col-md-6 mb-4">
+          <label for="rol" class="form-label">Rol del Usuario</label>
+          <div class="input-icon">
+            <input
+            id="rol"
+            type="text"
+            class="form-control"
+            [value]="nombreRol"
+            readonly
+            tabindex="-1"
+            onfocus="this.blur()"
+          />          
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <small class="text-muted">Define los permisos y accesos del usuario</small>
+        </div>
+        
+        
+
+        <div class="col-md-6 mb-4">
+          <label class="form-label d-block">Estado de la Cuenta</label>
+          <div class="form-check form-switch mt-2">
+            <input id="activo" type="checkbox" class="form-check-input" formControlName="activo" role="switch" />
+            <label class="form-check-label" for="activo">
+              <span class="ms-2">Usuario activo</span>
+            </label>
+          </div>
+          <small class="text-muted">Los usuarios inactivos no pueden acceder al sistema</small>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="d-flex justify-content-between align-items-center mt-4">
+        <button type="button" class="btn btn-outline-secondary px-4" (click)="irAUsuarios()">
+          <i class="fas fa-arrow-left me-2"></i> Cancelar
+        </button>
+        
+        <button type="submit" class="btn btn-success px-4" [disabled]="usuarioForm.invalid">
+          <i class="fas fa-save me-2"></i>Guardar Cambios
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="form-container">
+    <div class="card-header">
+      <h2 class="page-title"><i class="fas fa-user-plus me-2"></i>Agregar Profesor</h2>
+      <p class="subtitle mb-0">Creación de una nueva cuenta de usuario en el sistema</p>
+    </div>
+    <form [formGroup]="profesorForm" (ngSubmit)="agregarProfesor()" class="mt-4">
+      <div class="row">
+        <!-- Nombre de Usuario -->
+        <div class="col-md-6 mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input id="nombre" type="text" class="form-control" formControlName="nombre" placeholder="Ingrese el nombre"
+            required />
+          <div *ngIf="profesorForm.controls['nombre'].invalid && profesorForm.controls['nombre'].touched"
+            class="text-danger">
+            <i class="fas fa-exclamation-circle me-1"></i>El nombre de profesor es obligatorio.
+          </div>
+
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input id="apellido" type="text" class="form-control" formControlName="apellido"
+            placeholder="Ingrese el apellido" required />
+          <div *ngIf="profesorForm.controls['apellido'].invalid && profesorForm.controls['apellido'].touched"
+            class="text-danger">
+            El apellido es obligatorio y debe tener al menos 3 caracteres.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="dni" class="form-label">DNI</label>
+          <input id="dni" type="text" class="form-control" formControlName="dni" placeholder="Ingrese el DNI"
+            required />
+          <div *ngIf="profesorForm.controls['dni'].invalid && profesorForm.controls['dni'].touched" class="text-danger">
+            El DNI debe tener 8 dígitos numéricos.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="especialidad" class="form-label">Especialidad</label>
+          <input id="especialidad" type="text" class="form-control" formControlName="especialidad"
+            placeholder="Ingrese la especialidad" required />
+          <div *ngIf="profesorForm.controls['especialidad'].invalid && profesorForm.controls['especialidad'].touched"
+            class="text-danger">
+            La especialidad es obligatoria y debe tener al menos 3 caracteres.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input id="telefono" type="text" class="form-control" formControlName="telefono"
+            placeholder="Ingrese el teléfono" required />
+          <div *ngIf="profesorForm.controls['telefono'].invalid && profesorForm.controls['telefono'].touched"
+            class="text-danger">
+            El teléfono debe tener 9 dígitos numéricos.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="d-flex justify-content-between align-items-center mt-4">
+        <button type="button" class="btn btn-outline-secondary px-4" (click)="irAProfesores()">
+          <i class="fas fa-arrow-left me-2"></i>Cancelar
+        </button>
+        <button type="submit" class="btn btn-success px-4 py-2 fw-bold shadow-sm" [disabled]="profesorForm.invalid">
+          <i class="fas fa-user-plus"></i> Agregar Profesor
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

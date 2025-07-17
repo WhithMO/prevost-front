@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="main-container">
+    <div class="content-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="page-title">
+          <i class="fas fa-clipboard-list me-2"></i>Historial de Alumno
+        </h2>
+      </div>
+    </div>
+
+    <div class="p-4">
+      <!-- Selector de alumno -->
+      <div class="mb-4">
+        <div class="input-group">
+          <ng-select
+            [items]="listaAllumno"
+            bindLabel="nombreCompleto"
+            bindValue="idalumno"
+            [(ngModel)]="nombreBusqueda"
+            placeholder="Buscar alumno..."
+            [searchable]="true"
+            [clearable]="false"
+            class="form-control">
+          </ng-select>
+          <span class="input-group-text bg-primary text-white" (click)="obtenerDatos()" style="cursor: pointer;">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>    
+      </div>
+
+      <!-- Info del alumno -->
+      <div *ngIf="alumnos.length" class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="text-dark">
+          Alumno: <i class="text-muted">{{ alumnos[0].nombreAlumno }} {{ alumnos[0].apellidoAlumno }}</i>
+        </h4>
+        <h4 class="text-dark">
+          Aula: <i class="text-muted">{{ alumnos[0].aula }}</i>
+        </h4>
+      </div>
+
+      <!-- Tabla -->
+      <div class="table-responsive rounded shadow-sm custom-table-container" *ngIf="alumnos.length">
+        <table class="table table-striped text-center">
+          <thead>
+            <tr>
+              <th scope="col">N°</th>
+              <th scope="col">Curso</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let asistencia of alumnos | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index">
+              <td class="fw-bold">{{ i + 1 }}</td>
+              <td>{{ asistencia.curso }}</td>
+              <td [ngClass]="{
+                'text-success': asistencia.estadoAsistencia?.toUpperCase() === 'PRESENTE',
+                'text-warning': asistencia.estadoAsistencia?.toUpperCase() === 'TARDANZA',
+                'text-danger': asistencia.estadoAsistencia?.toUpperCase() === 'AUSENTE',
+                'text-primary': asistencia.estadoAsistencia?.toUpperCase() === 'JUSTIFICADO'
+              }">
+                {{ asistencia.estadoAsistencia }}
+              </td>
+              <td>{{ asistencia.fechaAsistencia | date:'dd/MM/yyyy' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Sin resultados -->
+      <p class="text-center text-muted" *ngIf="alumnos.length === 0 && busquedaRealizada">
+        No hay registros de asistencia para este alumno.
+      </p>
+      <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior" nextLabel="Siguiente">
+      </pagination-controls>
+
+      <!-- Contadores y botones exportar combinados -->
+      <div class="d-flex flex-wrap justify-content-between align-items-center mt-4 gap-3">
+        <div class="d-flex flex-wrap gap-4 fw-bold text-center">
+          <div class="text-success">Presente: {{contador.presente}}</div>
+          <div class="text-warning">Tardanza: {{contador.tardanza}}</div>
+          <div class="text-danger">Ausente: {{contador.ausente}}</div>
+          <div class="text-primary">Justificado: {{contador.justificacion}}</div>
+        </div>
+        <div class="d-flex gap-2" *ngIf="alumnos.length">
+          <button (click)="exportarPDF()" class="btn custom-btn-danger px-4"><i class="fas fa-file-pdf"></i> Exportar PDF</button>
+          <button (click)="exportarExcel()" class="btn btn-success px-4"><i class="fas fa-file-excel"></i> Exportar Excel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

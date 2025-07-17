@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PrevostGrupo3</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="logocolegio.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    .nav-link.active {
+  background-color: #bd2130 !important;
+  border-radius: 5px;
+}
+
+.accordion-body .nav-link {
+  padding-left: 10px;
+  font-size: 0.95rem;
+}
+
+.accordion-button::after {
+  display: none;
+}
+
+.sidebar .nav-link {
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+#sidebar {
+  transform: translateX(0); /* Mostrar por defecto */
+}
+
+#sidebar.toggled {
+  transform: translateX(-100%); /* Ocultar */
+}
+
+#sidebarToggle {
+  background-color: #f8f9fa; /* fondo claro */
+  color: #333;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+#sidebarToggle:hover {
+  background-color: #e2e6ea;
+}
+
+/* Sidebar base */
+.sidebar {
+  width: 250px;
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Texto dentro del sidebar */
+.sidebar-label,
+.sidebar-title {
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Cuando está colapsado */
+.sidebar.collapsed {
+  width: 70px !important;
+}
+
+/* Oculta textos al colapsar */
+.sidebar.collapsed .sidebar-label,
+.sidebar.collapsed .sidebar-title {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  overflow: hidden;
+  display: none;
+}
+
+/* Asegurar que los íconos sigan visibles */
+.sidebar .nav-link i {
+  font-size: 1.2rem;
+}
+
+/* Por defecto, considera sidebar expandido */
+.main-content {
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Cuando el sidebar está colapsado */
+.content-expanded {
+  margin-left: 70px !important;
+}
+
+  </style>
+</head>
+<body class="mat-typography">
+  <app-root></app-root>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>

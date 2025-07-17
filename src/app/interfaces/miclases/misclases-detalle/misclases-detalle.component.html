@@ -1,0 +1,82 @@
+<!-- 🧾 Detalles de la Clase -->
+<div class="card shadow border-0 rounded-4 mb-5 bg-light-subtle">
+  <div class="card-body px-4 py-4">
+    <h3 class="card-title text-center fw-bold mb-4">Detalles de la Clase</h3>
+
+    <div class="row g-3 text-start">
+      <div class="col-md-6">
+        <div class="border rounded-3 p-3 bg-white shadow-sm">
+          <p class="mb-1"><strong>Día:</strong> {{ clase.diaSemana }}</p>
+          <p class="mb-1"><strong>Hora Inicio:</strong> {{ clase.horaInicio }}</p>
+          <p class="mb-0"><strong>Hora Final:</strong> {{ clase.horaFin }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="border rounded-3 p-3 bg-white shadow-sm">
+          <p class="mb-1"><strong>Nombre del Aula:</strong> {{ clase.nombreAula }}</p>
+          <p class="mb-0">
+            <strong>Fecha de Clase:</strong> {{ clase.fechaAsistencia | date: 'dd/MM/yyyy' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 class="text-center font-weight-bold text-dark mb-3">Edición de Asistencia</h2>
+
+<!-- 🔹 Botón para iniciar la edición -->
+<div class="text-center mb-3">
+  <button class="btn btn-primary btn-lg px-4 shadow-sm" 
+          (click)="iniciarEdicion()" 
+          [disabled]="!esDiaCorrecto || !esHoraCorrecta">
+    Editar Asistencias
+  </button>
+  <p *ngIf="!esDiaCorrecto" class="text-danger mt-2">⚠ No es el día de la clase.</p>
+  <p *ngIf="!esHoraCorrecta" class="text-danger mt-2">⚠ Ya pasó el horario de la clase, no se pueden realizar cambios.</p>
+</div>
+
+<div class="table-responsive" *ngIf="alumnos.length > 0">
+  <table class="table table-hover table-bordered text-center w-100">
+    <thead class="table-dark text-white">
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Alumno</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alumno of alumnos; let i = index">
+        <td class="fw-bold">{{ i + 1 }}</td>
+        <td>{{ alumno.nombreAlumno }}</td>
+        <td>
+          <span *ngIf="!modoEdicion">{{ alumno.estado }}</span>
+
+          <!-- 🔹 Mostrar el select solo cuando modoEdicion está activado -->
+          <select *ngIf="modoEdicion && esDiaCorrecto && esHoraCorrecta" 
+                  [(ngModel)]="asistencias[i].estado" 
+                  class="form-select" 
+                  (change)="verificarEstados()">
+            <option value="">Seleccione</option>
+            <option value="Presente">Presente</option>
+            <option value="Ausente">Ausente</option>
+            <option value="Tardanza">Tardanza</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 🔹 Botón para guardar cambios -->
+<div class="text-center mt-4">
+  <button class="btn btn-success btn-lg px-4 shadow-sm" 
+          (click)="guardarCambios()" 
+          [disabled]="botonDeshabilitado || !modoEdicion">
+    Guardar Cambios
+  </button>
+</div>
+
+<!-- 🔹 Mostrar mensaje si no hay alumnos -->
+<p *ngIf="alumnos.length === 0" class="text-center text-danger font-weight-bold mt-3">
+  No hay alumnos en esta clase.
+</p>

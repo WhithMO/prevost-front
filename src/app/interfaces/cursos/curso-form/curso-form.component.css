@@ -1,0 +1,99 @@
+
+.form-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+ 
+}
+
+.page-title {
+  color: #2c3e50;
+  font-weight: 700;
+  
+}
+
+.subtitle {
+  color: #7f8c8d;
+ 
+  font-size: 0.95rem;
+}
+.form-label {
+  font-weight: 600;
+  color: #34495e;
+
+}
+.form-control,
+.form-select {
+  border-radius: 8px;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.form-control::placeholder {
+  color: #bdc3c7;
+}
+.form-check-input {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.2rem;
+}
+
+.form-check-label {
+  padding-left: 8px;
+  font-size: 1rem;
+}
+.form-check-input:checked {
+  background-color: #27ae60;
+  border-color: #27ae60;
+}
+
+.btn-success {
+  background-color: #27ae60;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.btn-success:hover {
+  background-color: #219653;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+}
+
+.btn-success:disabled {
+  background-color: #a3e6c0;
+}
+
+.divider {
+  border-top: 1px solid #eaeaea;
+  margin: 20px 0;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon i {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #95a5a6;
+}
+
+.input-icon input {
+  padding-right: 40px;
+}
+.card-header {
+  background-color: #f1f8fe;
+  border-bottom: 1px solid #e1ecf8;
+  padding: 15px ;
+
+}

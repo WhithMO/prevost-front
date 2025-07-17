@@ -1,0 +1,45 @@
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+  }
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    color: #004085;
+  }
+  .card-text {
+    font-size: 0.95rem;
+  }
+
+  .btn-outline-primary {
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+  }
+  .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .bg-success {
+    border-color: #1e7e34 !important;
+  }
+  .bg-success .card-title,
+  .bg-success .card-text {
+    color: white !important;
+  }
+  .bg-success .btn-outline-light {
+    border-color: white !important;
+  }
+  .bg-success .btn-outline-light:hover {
+    background-color: white !important;
+    color: #28a745 !important;
+  }

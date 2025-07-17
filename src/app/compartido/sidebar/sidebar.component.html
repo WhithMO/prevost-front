@@ -1,0 +1,88 @@
+<aside id="sidebar"
+  class="sidebar text-white flex-column position-fixed top-0 start-0 vh-100 shadow"
+  [ngClass]="{ 'collapsed': isSidebarToggled }"
+  style="background-color: rgb(53, 30, 30); z-index: 1030; padding-top: 56px; transition: all 0.3s ease;">
+  
+  <!-- Logo -->
+  <div class="px-3 py-3 border-bottom text-center">
+    <a routerLink="/inicio" class="text-decoration-none text-white">
+      <h5 class="fw-bold m-0 sidebar-title">I.E. Robert<br>Francis Prevost</h5>
+    </a>
+  </div>
+
+  <!-- Menú -->
+  <nav class="flex-grow-1 overflow-auto mt-2 px-2">
+    <ul class="nav flex-column">
+      <li *ngIf="isProfessor" class="mb-2">
+        <a routerLink="/misclases" routerLinkActive="active"
+           class="nav-link text-white d-flex align-items-center gap-2">
+          <i class="fas fa-book-open"></i>
+          <span class="sidebar-label">Mis Clases</span>
+        </a>
+      </li>
+
+      
+
+      <li *ngIf="isProfessor" class="mb-2">
+        <a routerLink="/reportes/profesor" routerLinkActive="active"
+           class="nav-link text-white d-flex align-items-center gap-2">
+          <i class="fas fa-clipboard-check"></i>
+          <span class="sidebar-label">Mis Asistencias</span>
+        </a>
+      </li>
+
+      <!-- Mantenimiento -->
+      <li *ngIf="isAdmin" class="my-2">
+        <a class="nav-link text-white d-flex align-items-center gap-2"
+           data-bs-toggle="collapse" href="#adminCollapse"
+           role="button" aria-expanded="false" aria-controls="adminCollapse">
+          <i class="fas fa-cogs"></i>
+          <span class="sidebar-label">Mantenimiento</span>
+        </a>
+        <div class="collapse" id="adminCollapse">
+          <div class="accordion-body ps-3">
+            <ul class="nav flex-column gap-1">
+              <li><a routerLink="/usuarios" routerLinkActive="active" class="nav-link text-white d-flex align-items-center gap-2">
+                <i class="fas fa-users"></i><span class="sidebar-label">Usuarios</span></a></li>
+              <li><a routerLink="/alumnos" routerLinkActive="active" class="nav-link text-white d-flex align-items-center gap-2">
+                <i class="fas fa-user-graduate"></i><span class="sidebar-label">Alumnos</span></a></li>
+              <li><a routerLink="/profesores" routerLinkActive="active" class="nav-link text-white d-flex align-items-center gap-2">
+                <i class="fas fa-chalkboard-teacher"></i><span class="sidebar-label">Profesores</span></a></li>
+              <li><a routerLink="/aulas" routerLinkActive="active" class="nav-link text-white d-flex align-items-center gap-2">
+                <i class="fas fa-door-open"></i><span class="sidebar-label">Aulas</span></a></li>
+              <li><a routerLink="/cursos" routerLinkActive="active" class="nav-link text-white d-flex align-items-center gap-2">
+                <i class="fas fa-book"></i><span class="sidebar-label">Cursos</span></a></li>
+              <li><a routerLink="/clases" routerLinkActive="active" class="nav-link text-white d-flex align-items-center gap-2">
+                <i class="fas fa-chalkboard"></i><span class="sidebar-label">Clases</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <!-- Reportes -->
+      <li *ngIf="isAdmin" class="mb-2">
+        <a routerLink="/reportes/asistencia" routerLinkActive="active"
+           class="nav-link text-white d-flex align-items-center gap-2">
+          <i class="fas fa-clipboard-list"></i>
+          <span class="sidebar-label">Reportes Asistencia</span>
+        </a>
+      </li>
+      <li *ngIf="isAdmin" class="mb-2">
+        <a routerLink="/reportes/alumnos" routerLinkActive="active"
+           class="nav-link text-white d-flex align-items-center gap-2">
+          <i class="fas fa-history"></i>
+          <span class="sidebar-label">Historial Alumno</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Botón para colapsar -->
+  <div class="text-center my-3">
+    <button id="sidebarToggle"
+      class="btn btn-secondary btn-sm px-3"
+      type="button"
+      (click)="toggleSidebar()">
+      <i class="bi" [ngClass]="isSidebarToggled ? 'bi-chevron-right' : 'bi-chevron-left'"></i>
+    </button>
+  </div>
+</aside>

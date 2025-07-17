@@ -1,0 +1,55 @@
+<div class="container ">
+    <div class="main-container">
+        <div class="content-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="page-title"><i class="fas fa-users me-2"></i>Mantenimiento de Alumno</h2>
+                <button routerLink="/alumnos/form" class="btn custom-btn">
+                    <i class="fas fa-user-plus me-2"></i> Registrar
+                </button>
+            </div>
+        </div>
+
+        <div class="p-4">
+            <div class="mb-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar por nombre o apellido" [(ngModel)]="filtro"
+                    (input)="filtrarAlumnos()">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="table-responsive rounded shadow-sm custom-table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">N°</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">N° DNI</th>
+                            <th scope="col">Fecha de Registro</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let alumno of alumnosFiltrados | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+                            <td class="fw-bold">{{ alumno.idalumno }}</td>
+                            <td>{{ alumno.nombre }}</td>
+                            <td>{{ alumno.apellido }}</td>
+                            <td>{{ alumno.dni }}</td>
+                            <td>{{ alumno.fechaNacimiento | date:'dd/MM/yyyy' }}</td>
+                            <td>
+                                <button class="btn btn-warning" routerLink="editar/{{alumno.idalumno}}">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Controles de paginación -->
+        <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior" nextLabel="Siguiente">
+        </pagination-controls>
+    </div>
+</div>

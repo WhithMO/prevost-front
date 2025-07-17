@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-center mb-4">
+    <button class="btn btn-primary btn-lg px-4 shadow-sm" (click)="toggleFiltro()">
+      {{ mostrarTodasLasClases ? 'Ver solo las clases de hoy' : 'Ver todas las clases' }}
+    </button>
+  </div>
+
+  <h2 class="text-center font-weight-bold text-dark mb-3">
+    {{ mostrarTodasLasClases ? 'Calendario de Clases' : 'Clases para hoy: ' + diaActual }}
+  </h2>
+
+  <!-- VISTA DE CALENDARIO -->
+  <div *ngIf="mostrarTodasLasClases">
+    <full-calendar [options]="calendarOptions"></full-calendar>
+  </div>
+
+  <!-- VISTA DE TARJETAS -->
+  <div class="row justify-content-center" *ngIf="!mostrarTodasLasClases && clasesFiltradas.length > 0">
+    <div *ngFor="let clase of clasesFiltradas" class="col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card shadow-sm border rounded-lg">
+        <div class="card-body text-center">
+          <h5 class="card-title font-weight-bold text-black">{{ clase.curso }}</h5>
+          <p class="card-text mb-1"><strong>Aula:</strong> {{ clase.aula }}</p>
+          <p class="card-text mb-1"><strong>Día:</strong> {{ clase.diaSemana }}</p>
+          <p class="card-text mb-1"><strong>Fecha:</strong> {{ getFormattedDate(clase.fechadeclase) }}</p>
+          <p class="card-text mb-1"><strong>Hora Inicio:</strong> {{ clase.horaInicio }}</p>
+          <p class="card-text mb-1"><strong>Hora Final:</strong> {{ clase.horaFin }}</p>
+
+          <button class="btn btn-success btn-sm mt-2 w-100" (click)="verDetalleClase(clase.idClase)">
+            Ver Detalles
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noClases>
+    <p class="text-center text-danger font-weight-bold">No hay clases programadas para hoy.</p>
+  </ng-template>
+</div>

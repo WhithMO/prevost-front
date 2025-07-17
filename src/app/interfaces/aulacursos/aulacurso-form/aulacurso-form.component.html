@@ -1,0 +1,43 @@
+<form [formGroup]="aulacursoForm" (ngSubmit)="agregarAulaCurso()">
+    <div class="row">
+  
+      <!-- Selección de Alumnos (Múltiples) -->
+      <div class="col-md-6 mb-3">
+        <label for="idalumnos" class="form-label">Alumnos</label>
+        <select 
+          id="idalumnos" 
+          class="form-control" 
+          formControlName="idalumnos" 
+          multiple 
+          required 
+          size="6" 
+          style="height: auto;"
+        >
+          <option *ngFor="let alumno of listaAlumnos" [value]="alumno.idalumno">
+            {{ alumno.nombrealumno }} {{ alumno.apellidoalumno }}
+          </option>
+        </select>
+        <small class="text-muted">Puedes seleccionar varios alumnos manteniendo presionada la tecla Ctrl o Shift.</small>
+      </div>
+  
+      <!-- Selección de Curso -->
+      <div class="col-md-6 mb-3">
+        <label for="idcurso" class="form-label">Curso</label>
+        <select id="idcurso" class="form-control" formControlName="idcurso" required>
+          <option value="" disabled selected>Seleccione un curso</option>
+          <option *ngFor="let curso of listaCursos" [value]="curso.idcurso">
+            {{ curso.nombrecurso }}
+          </option>
+        </select>
+      </div>
+  
+    </div>
+  
+    <!-- Botón de Guardar -->
+    <div class="text-start mt-4">
+      <button type="submit" class="btn btn-primary px-4 py-2 fw-bold shadow-sm" [disabled]="aulacursoForm.invalid">
+        <i class="fas fa-save"></i> Guardar
+      </button>
+    </div>
+  </form>
+  

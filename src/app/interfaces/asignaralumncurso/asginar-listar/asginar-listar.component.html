@@ -1,0 +1,81 @@
+<div class="container ">
+  <div class="main-container">
+    <div class="content-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="page-title"><i class="fas fa-users me-2"></i>Asignacion de Alumnos </h2>
+        <button routerLink="/asignarclases/form" class="btn custom-btn">
+          <i class="fas fa-user-plus me-2"></i> Registrar
+        </button>
+      </div>
+    </div>
+
+    <div class="p-4">
+      <!-- Mensaje de error -->
+      <ng-template #noData>
+        <div class="alert alert-warning text-center" role="alert">
+          No hay asignaciones de alumnos a clases registradas.
+        </div>
+      </ng-template>
+      <!-- Tabla de usuarios -->
+      <div class="table-responsive rounded shadow-sm custom-table-container">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Clase</th>
+              <th>Curso</th>
+              <th>Profesor</th>
+              <th>Alumno</th> 
+              <th>DNI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let asignacion of listaAsignaciones | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index ">
+              <td class="fw-bold">{{ i + 1 }}</td>
+
+              <!-- Validación para evitar errores si "clase" es null -->
+              <td>
+                <ng-container *ngIf="asignacion.clase; else noDisponible">
+                  {{ asignacion.clase?.diaSemana }} ({{ asignacion.clase?.horaInicio }} - {{ asignacion.clase?.horaFin
+                  }})
+                </ng-container>
+                <ng-template #noDisponible>
+                  <span class="text-danger">No disponible</span>
+                </ng-template>
+              </td>
+
+              <!-- Validación para evitar errores si "curso" es null -->
+              <td>{{ asignacion.clase?.curso || 'No asignado' }}</td>
+
+              <!-- Validación para evitar errores si "profesor" es null -->
+              <td>
+                <ng-container *ngIf="asignacion.clase?.profesor; else profesorDesconocido">
+                  {{ asignacion.clase?.profesor?.nombre }} {{ asignacion.clase?.profesor?.apellido }}
+                </ng-container>
+                <ng-template #profesorDesconocido>
+                  <span class="text-danger">Sin profesor</span>
+                </ng-template>
+              </td>
+
+              <!-- Validación para evitar errores si "alumno" es null -->
+              <td>
+                <ng-container *ngIf="asignacion.alumno; else alumnoDesconocido">
+                  {{ asignacion.alumno?.nombre }} {{ asignacion.alumno?.apellido }}
+                </ng-container>
+                <ng-template #alumnoDesconocido>
+                  <span class="text-danger">Sin alumno</span>
+                </ng-template>
+              </td>
+
+              <!-- Validación para evitar errores si "dni" es null -->
+              <td>{{ asignacion.alumno?.dni || 'No disponible' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Controles de paginación -->
+    <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior" nextLabel="Siguiente">
+    </pagination-controls>
+  </div>
+</div>
